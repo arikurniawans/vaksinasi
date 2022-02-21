@@ -16,7 +16,7 @@ class Rencana extends CI_Controller {
     public function index()
     {
         $data['rencana'] = $this->Rencana_model->showRencana()->result();
-        $data['stok'] = $this->Stok_model->showStok()->result();
+        $data['stok'] = $this->Stok_model->showDataStok()->result();
 
         $this->load->view('parts/header');
         $this->load->view('parts/sidebar');

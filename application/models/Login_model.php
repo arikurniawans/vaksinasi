@@ -48,6 +48,10 @@ class login_model extends CI_Model
         }
     }
 
+    public function isNotLogin(){
+        return $this->session->userdata('id') === null;
+    }
+
     // public function create_user($data) {
     //     date_default_timezone_set('Asia/Jakarta');
 

@@ -16,11 +16,11 @@ class Capaian extends CI_Controller {
     public function index()
     {
         $data['capaian'] = $this->Capaian_model->showCapaian()->result();
-        $data['stok'] = $this->Stok_model->showStok()->result();
+        $data['stok'] = $this->Stok_model->showDataStok()->result();
 
         $this->load->view('parts/header');
         $this->load->view('parts/sidebar');
-        $this->load->view('v_capaian',$data);
+        $this->load->view('v_capaian', $data);
         $this->load->view('parts/footer');
     }
 
@@ -36,6 +36,7 @@ class Capaian extends CI_Controller {
             'asal_vaksin' => $this->input->post('asal_vaksin')
         );
 
+        $kurang = $this->Stok_model->kurangStok($this->input->post('jenis_vaksin'), $this->input->post('capaian_vaksin'));
         $ubah = $this->Capaian_model->editCapaian($id, $data);
         if($ubah)
         {
@@ -59,6 +60,8 @@ class Capaian extends CI_Controller {
             'id_stok' => $this->input->post('jenis_vaksin'),
             'asal_vaksin' => $this->input->post('asal_vaksin')
         );
+
+        $kurang = $this->Stok_model->kurangStok($this->input->post('jenis_vaksin'), $this->input->post('capaian_vaksin'));
 
         $simpan = $this->Capaian_model->createCapaian($data);
         if($simpan)

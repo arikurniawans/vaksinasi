@@ -52,7 +52,7 @@
 
           <li class="nav-item menu-open">
             <a href="<?php echo base_url(); ?>stok" class="nav-link">
-              <i class="nav-icon fas fa-address-card"></i>
+              <i class="nav-icon fa fa-medkit "></i>
               <p>
                 Stok Vaksin
               </p>

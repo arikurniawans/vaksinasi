@@ -48,17 +48,27 @@
                     <th>JUMLAH</th>
                     <th>KADALUARSA</th>
                     <th>KETERANGAN</th>
+                    <th>STATUS VAKSIN</th>
                     <th>AKSI</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <?php $no=1; foreach($stok as $data){ ?>
+                  <?php date_default_timezone_set('Asia/Jakarta');
+                        $tgl = date('Y-m-d');
+                        $no=1; foreach($stok as $data){ 
+                        $expire = strtotime($data->kadaluarsa);
+                        $today = strtotime($tgl);
+                        if($expire <= $today) { $hari = "Aktif"; $badge = "badge-success"; }else{ echo $hari="Expired"; $badge="badge-danger"; }
+
+                        if($data->jumlah == "0"){ $badestok="badge-danger"; }else{ $badestok=""; }
+                  ?>
                   <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $data->jenis_vaksin; ?></td>
-                      <td><?php echo $data->jumlah; ?> Dosis</td>
+                      <td><span class="<?php echo $badestok; ?>"><?php echo $data->jumlah; ?> Dosis</span></td>
                       <td><?php echo $data->kadaluarsa; ?></td>
                       <td><?php echo $data->keterangan; ?></td>
+                      <td><span class="<?php echo $badge; ?>"><?php echo $hari; ?></span></td>
                       <td>
                           <a href="javascript:void(0);" data-toggle="modal" data-target="#editpersonel<?php echo $data->id_stok; ?>" class="btn btn-flat btn-primary btn-xs">Edit</a>
                           <a href="javascript:void(0);" data-toggle="modal" data-target="#hapuspersonel<?php echo $data->id_stok; ?>" class="btn btn-flat btn-danger btn-xs">Hapus</a>
