@@ -56,7 +56,7 @@
                   <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $data->jenis_vaksin; ?></td>
-                      <td><?php echo $data->jumlah; ?></td>
+                      <td><?php echo $data->jumlah; ?> Dosis</td>
                       <td><?php echo $data->kadaluarsa; ?></td>
                       <td><?php echo $data->keterangan; ?></td>
                       <td>
@@ -83,7 +83,7 @@
                                   <input type="text" class="form-control" id="exampleInputEmail1" name="jenis_vaksin" required value="<?php echo $data->jenis_vaksin; ?>" placeholder="Ketikan jenis vaksin">
                                 </div>
                                 <div class="form-group">
-                                  <label for="exampleInputEmail1">Jumlah Vaksin</label>
+                                  <label for="exampleInputEmail1">Jumlah Vaksin (Dosis)</label>
                                   <input type="number" class="form-control" id="exampleInputEmail1" name="jumlah_vaksin" placeholder="Ketikan jumlah vaksin" required value="<?php echo $data->jumlah; ?>">
                                 </div>
                                 <div class="form-group">
@@ -171,7 +171,7 @@
                     <input type="text" class="form-control" id="exampleInputEmail1" name="jenis_vaksin" required placeholder="Ketikan jenis vaksin">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Jumlah Vaksin</label>
+                    <label for="exampleInputEmail1">Jumlah Vaksin (Dosis)</label>
                     <input type="number" class="form-control" id="exampleInputEmail1" name="jumlah_vaksin" placeholder="Ketikan jumlah vaksin" required>
                   </div>
                   <div class="form-group">

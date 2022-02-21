@@ -9,12 +9,14 @@ class Capaian extends CI_Controller {
         $this->load->helper(array('url'));
         $this->load->library(array('form_validation','pagination','session'));
         $this->load->model('Capaian_model');
+        $this->load->model('Stok_model');
 
     }
 
     public function index()
     {
         $data['capaian'] = $this->Capaian_model->showCapaian()->result();
+        $data['stok'] = $this->Stok_model->showStok()->result();
 
         $this->load->view('parts/header');
         $this->load->view('parts/sidebar');
@@ -30,7 +32,7 @@ class Capaian extends CI_Controller {
             'tgl_capaian' => $this->input->post('tgl_vaksin'),
             'lokasi_vaksin' => $this->input->post('lokasi_vaksin'),
             'capaian_vaksin' => $this->input->post('capaian_vaksin'),
-            'jenis_vaksin' => $this->input->post('jenis_vaksin'),
+            'id_stok' => $this->input->post('jenis_vaksin'),
             'asal_vaksin' => $this->input->post('asal_vaksin')
         );
 
@@ -54,7 +56,7 @@ class Capaian extends CI_Controller {
             'tgl_capaian' => $this->input->post('tgl_vaksin'),
             'lokasi_vaksin' => $this->input->post('lokasi_vaksin'),
             'capaian_vaksin' => $this->input->post('capaian_vaksin'),
-            'jenis_vaksin' => $this->input->post('jenis_vaksin'),
+            'id_stok' => $this->input->post('jenis_vaksin'),
             'asal_vaksin' => $this->input->post('asal_vaksin')
         );
 

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aplikasi Vaksinasi - POLRES TUBABA</title>
+  <title>Aplikasi Vaksinasi - POLRES TUBA</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,7 +26,7 @@
       <a href="javascript:void(0);" class="h1"><b>Aplikasi Vaksinasi</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Aplikasi Vaksinasi Polres Tulang Bawang Barat</p>
+      <p class="login-box-msg">Aplikasi Vaksinasi Polres Tulang Bawang</p>
 
       <form action="<?php echo base_url(); ?>Login/signin" method="post">
         <div class="input-group mb-3">

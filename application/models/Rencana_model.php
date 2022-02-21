@@ -10,8 +10,8 @@ class Rencana_model extends CI_Model
 
     public function showRencana()
     {
-        $this->db->order_by('id_rencana','DESC');
-        $query = $this->db->get('rencana');        
+        // $this->db->order_by('id_rencana','DESC');
+        $query = $this->db->get('v_rencana');        
         return $query;
     }
 

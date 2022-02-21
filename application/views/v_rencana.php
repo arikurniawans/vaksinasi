@@ -89,11 +89,17 @@
                                   </div>
                                   <div class="form-group">
                                     <label for="exampleInputEmail1">Rencana Vaksin</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" name="rencana_vaksin" placeholder="Ketikan rencana vaksin" required value="<?php echo $data->rencana_vaksin; ?>">
+                                    <input type="number" class="form-control" id="exampleInputEmail1" name="rencana_vaksin" placeholder="Ketikan rencana vaksin" required value="<?php echo $data->rencana_vaksin; ?>">
                                   </div>
                                   <div class="form-group">
                                     <label for="exampleInputEmail1">Jenis Vaksin</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" name="jenis_vaksin" placeholder="Ketikan jenis vaksin" value="<?php echo $data->jenis_vaksin; ?>">
+                                    <select class="form-control select2" style="width: 100%;" name="jenis_vaksin" required>
+                                      <option selected="selected" value="">Pilih Jenis Vaksin</option>
+                                      <option value="<?php echo $data->id_stok; ?>" selected><?php echo $data->jenis_vaksin; ?></option>
+                                      <?php foreach ($stok as $datastok) { ?>
+                                        <option value="<?php echo $datastok->id_stok; ?>"><?php echo $datastok->jenis_vaksin; ?></option>
+                                      <?php } ?>
+                                    </select>
                                   </div>
                                   <div class="form-group">
                                     <label for="exampleInputEmail1">Asal Vaksin</label>
@@ -181,11 +187,16 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Rencana Vaksin</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="rencana_vaksin" placeholder="Ketikan rencana vaksin" required>
+                    <input type="number" class="form-control" id="exampleInputEmail1" name="rencana_vaksin" placeholder="Ketikan rencana vaksin" required>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Jenis Vaksin</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="jenis_vaksin" placeholder="Ketikan jenis vaksin">
+                    <select class="form-control select2" style="width: 100%;" name="jenis_vaksin" required>
+                      <option selected="selected">Pilih Jenis Vaksin</option>
+                      <?php foreach ($stok as $data) { ?>
+                        <option value="<?php echo $data->id_stok; ?>"><?php echo $data->jenis_vaksin; ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Asal Vaksin</label>

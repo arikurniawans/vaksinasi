@@ -10,8 +10,8 @@ class Capaian_model extends CI_Model
 
     public function showCapaian()
     {
-        $this->db->order_by('id_capaian','DESC');
-        $query = $this->db->get('capaian');        
+        // $this->db->order_by('id_capaian','DESC');
+        $query = $this->db->get('v_capaian');        
         return $query;
     }
 
