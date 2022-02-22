@@ -131,6 +131,8 @@
                             </div>
                             <div class="modal-body">
                             <input type="hidden" name="id" value="<?php echo $data->id_capaian; ?>"/>
+                            <input type="hidden" name="jenis" value="<?php echo $data->id_stok; ?>"/>
+                            <input type="hidden" name="capai" value="<?php echo $data->capaian_vaksin; ?>"/>
                               Apakah anda ingin menghapus data capaian vaksinasi berikut ?
                             </div>
                             <div class="modal-footer">
@@ -229,6 +231,24 @@
         title: "Gagal",
         text: "Data capaian gagal ditambahkan !",
         icon: "error",
+        button: "OK",
+    });
+<?php } ?>
+
+<?php if($this->session->flashdata('message') == 'warn') { ?>
+   swal({
+        title: "Perhatian !",
+        text: "Data capaian vaksinasi melebihi jumlah stok vaksin berikut !",
+        icon: "warning",
+        button: "OK",
+    });
+<?php } ?>
+
+<?php if($this->session->flashdata('message') == 'expired') { ?>
+   swal({
+        title: "Perhatian !",
+        text: "Vaksin berikut telah memasuki masa expired !",
+        icon: "warning",
         button: "OK",
     });
 <?php } ?>

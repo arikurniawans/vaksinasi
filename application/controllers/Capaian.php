@@ -31,22 +31,61 @@ class Capaian extends CI_Controller {
         $data = array(
             'tgl_capaian' => $this->input->post('tgl_vaksin'),
             'lokasi_vaksin' => $this->input->post('lokasi_vaksin'),
-            'capaian_vaksin' => $this->input->post('capaian_vaksin'),
+            // 'capaian_vaksin' => $this->input->post('capaian_vaksin'),
             'id_stok' => $this->input->post('jenis_vaksin'),
             'asal_vaksin' => $this->input->post('asal_vaksin')
         );
 
-        $kurang = $this->Stok_model->kurangStok($this->input->post('jenis_vaksin'), $this->input->post('capaian_vaksin'));
-        $ubah = $this->Capaian_model->editCapaian($id, $data);
-        if($ubah)
-        {
-            $this->session->set_flashdata('message2','successfull'); 
+        $cekstok =  $this->Stok_model->detailStok($this->input->post('jenis_vaksin'))->result();
+
+        if($this->input->post('capaian_vaksin') > $cekstok[0]->jumlah){
+            $this->session->set_flashdata('message','warn');
             redirect('capaian');
-        }
-        else
-        {
-            $this->session->set_flashdata('message2','error'); 
-            redirect('capaian');
+        }else{
+            date_default_timezone_set('Asia/Jakarta');
+            $tgl = date('Y-m-d');
+            $expire = strtotime($cekstok[0]->kadaluarsa);
+            $today = strtotime($tgl);
+
+            if($expire <= $today) {
+                $cekcapaian =  $this->Capaian_model->detailCapaian()->result();
+
+                if($this->input->post('capaian_vaksin') == $cekcapaian[0]->capaian_vaksin){
+                    
+                    $ubah = $this->Capaian_model->editCapaian($id, $data);
+                    if($ubah)
+                    {
+                        $this->session->set_flashdata('message2','successfull'); 
+                        redirect('capaian');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('message2','error'); 
+                        redirect('capaian');
+                    }
+                }else{
+                    $kurang = $this->Stok_model->kurangStok($this->input->post('jenis_vaksin'), $this->input->post('capaian_vaksin'));
+
+                    $tambah = $this->Capaian_model->tambahCapaian($id, $this->input->post('capaian_vaksin'));
+
+                    $ubah = $this->Capaian_model->editCapaian($id, $data);
+                    if($ubah)
+                    {
+                        $this->session->set_flashdata('message2','successfull'); 
+                        redirect('capaian');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('message2','error'); 
+                        redirect('capaian');
+                    }
+                }
+
+            }else{ 
+                $this->session->set_flashdata('message','expired');
+                redirect('capaian'); 
+            }
+            
         }
 
     }
@@ -59,20 +98,39 @@ class Capaian extends CI_Controller {
             'capaian_vaksin' => $this->input->post('capaian_vaksin'),
             'id_stok' => $this->input->post('jenis_vaksin'),
             'asal_vaksin' => $this->input->post('asal_vaksin')
-        );
+        );        
 
-        $kurang = $this->Stok_model->kurangStok($this->input->post('jenis_vaksin'), $this->input->post('capaian_vaksin'));
+        $cekstok =  $this->Stok_model->detailStok($this->input->post('jenis_vaksin'))->result();
 
-        $simpan = $this->Capaian_model->createCapaian($data);
-        if($simpan)
-        {
-            $this->session->set_flashdata('message','successfull'); 
+        if($this->input->post('capaian_vaksin') > $cekstok[0]->jumlah){
+            $this->session->set_flashdata('message','warn');
             redirect('capaian');
-        }
-        else
-        {
-            $this->session->set_flashdata('message','error'); 
-            redirect('capaian');
+        }else{
+            date_default_timezone_set('Asia/Jakarta');
+            $tgl = date('Y-m-d');
+            $expire = strtotime($cekstok[0]->kadaluarsa);
+            $today = strtotime($tgl);
+
+            if($expire <= $today) { 
+                $kurang = $this->Stok_model->kurangStok($this->input->post('jenis_vaksin'), $this->input->post('capaian_vaksin'));
+
+                $simpan = $this->Capaian_model->createCapaian($data);
+                if($simpan)
+                {
+                    $this->session->set_flashdata('message','successfull'); 
+                    redirect('capaian');
+                }
+                else
+                {
+                    $this->session->set_flashdata('message','error'); 
+                    redirect('capaian');
+                }
+
+            }else{ 
+                $this->session->set_flashdata('message','expired');
+                redirect('capaian'); 
+            }
+            
         }
 
     }
@@ -81,6 +139,8 @@ class Capaian extends CI_Controller {
     {
         $id = $this->input->post('id');
         
+        $kembali = $this->Stok_model->kembaliStok($this->input->post('jenis'), $this->input->post('capai'));
+
         $hapus = $this->Capaian_model->deleteCapaian($id);
         if($hapus)
         {

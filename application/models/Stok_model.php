@@ -16,6 +16,13 @@ class Stok_model extends CI_Model
         return $query;
     }
 
+    public function detailStok($id)
+    {
+        // $this->db->order_by('id_capaian','DESC');
+        $query = $this->db->get_where('stok', array('id_stok' => $id));        
+        return $query;
+    }
+
     public function showDataStok()
     {
         $this->db->where_not_in('jumlah', array('0'));
@@ -34,6 +41,12 @@ class Stok_model extends CI_Model
     public function kurangStok($id, $jml)
     {
         $query = $this->db->query("UPDATE stok SET jumlah=jumlah-$jml WHERE id_stok='$id'");
+        return $query;
+    }
+
+    public function kembaliStok($id, $jml)
+    {
+        $query = $this->db->query("UPDATE stok SET jumlah=jumlah+$jml WHERE id_stok='$id'");
         return $query;
     }
 
