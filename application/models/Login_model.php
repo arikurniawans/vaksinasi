@@ -34,6 +34,7 @@ class login_model extends CI_Model
                 $session['pangkat'] = $result[0]->pangkat;
                 $session['nrp'] = $result[0]->nrp;
                 $session['no_telpon'] = $result[0]->no_telpon;
+                $session['user_status'] = $result[0]->user_status;
                 $this->session->set_userdata($session);
                 redirect('dashboard');
 

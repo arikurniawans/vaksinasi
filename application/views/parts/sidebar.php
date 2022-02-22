@@ -59,6 +59,7 @@
             </a>
           </li>
 
+          <?php if($this->session->userdata('user_status') == 'admin'){ ?>
           <li class="nav-item menu-open">
             <a href="<?php echo base_url(); ?>personel" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -67,6 +68,7 @@
               </p>
             </a>
           </li>
+        <?php } ?>
 
           <li class="nav-item menu-open">
             <a href="<?php echo base_url(); ?>login/signout" class="nav-link">
