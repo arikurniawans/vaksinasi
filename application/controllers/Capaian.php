@@ -47,7 +47,7 @@ class Capaian extends CI_Controller {
             $expire = strtotime($cekstok[0]->kadaluarsa);
             $today = strtotime($tgl);
 
-            if($expire <= $today) {
+            if($expire >= $today) {
                 $cekcapaian =  $this->Capaian_model->detailCapaian()->result();
 
                 if($this->input->post('capaian_vaksin') == $cekcapaian[0]->capaian_vaksin){
@@ -111,7 +111,7 @@ class Capaian extends CI_Controller {
             $expire = strtotime($cekstok[0]->kadaluarsa);
             $today = strtotime($tgl);
 
-            if($expire <= $today) { 
+            if($expire >= $today) { 
                 $kurang = $this->Stok_model->kurangStok($this->input->post('jenis_vaksin'), $this->input->post('capaian_vaksin'));
 
                 $simpan = $this->Capaian_model->createCapaian($data);

@@ -58,7 +58,7 @@
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $data->tgl_rencana; ?></td>
                       <td><?php echo $data->lokasi_vaksin; ?></td>
-                      <td><?php echo $data->rencana_vaksin; ?></td>
+                      <td><?php echo $data->rencana_vaksin; ?> Dosis</td>
                       <td><?php echo $data->jenis_vaksin; ?></td>
                       <td><?php echo $data->asal_vaksin; ?></td>
                       <td>

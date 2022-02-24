@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <strong>Developed at 2021</strong>
+    <strong>Developed at 2022</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
@@ -82,8 +82,113 @@
       "autoWidth": false,
       "responsive": true,
     });
+    $('#example3').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    $('#example4').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
   });
 </script>
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            var options = {
+                chart: {
+                    renderTo: 'mygraph',
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: "Grafik persentase capaian vaksinasi<br/>bulan <?php date_default_timezone_set('Asia/Jakarta'); echo date('F Y'); ?>"
+                },
+                tooltip: {
+                    formatter: function() {
+                        return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                    }
+                },
+                plotOptions: {
+                   pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: 'green',
+                            formatter: function() 
+                            {
+                                return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) +' % ';
+                            }
+                        }, 
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: []
+                }]
+            }
+            
+            $.getJSON("<?php echo base_url(); ?>dashboard/getgrafik", function(json) {
+                options.series[0].data = json;
+                chart = new Highcharts.Chart(options);
+            });
+            
+        });   
+    </script>
+
+<script>
+      $(document).ready(function() {
+  
+  pageScroll();
+  $("#contain").mouseover(function() {
+    clearTimeout(my_time);
+  }).mouseout(function() {
+    pageScroll();
+  });
+  
+  getWidthHeader('table_fixed','table_scroll');
+  
+});
+
+var my_time;
+function pageScroll() {
+  var objDiv = document.getElementById("contain");
+  objDiv.scrollTop = objDiv.scrollTop + 1;  
+  if ((objDiv.scrollTop + 100) == objDiv.scrollHeight) {
+    objDiv.scrollTop = 0;
+  }
+  my_time = setTimeout('pageScroll()', 80);
+}
+
+function getWidthHeader(id_header, id_scroll) {
+  var colCount = 0;
+  $('#' + id_scroll + ' tr:nth-child(1) td').each(function () {
+    if ($(this).attr('colspan')) {
+      colCount += +$(this).attr('colspan');
+    } else {
+      colCount++;
+    }
+  });
+  
+  for(var i = 1; i <= colCount; i++) {
+    var th_width = $('#' + id_scroll + ' > tbody > tr:first-child > td:nth-child(' + i + ')').width();
+    $('#' + id_header + ' > thead th:nth-child(' + i + ')').css('width',th_width + 'px');
+  }
+}
+    </script>
 
 </body>
 </html>

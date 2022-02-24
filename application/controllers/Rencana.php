@@ -47,7 +47,7 @@ class Rencana extends CI_Controller {
             $expire = strtotime($cekstok[0]->kadaluarsa);
             $today = strtotime($tgl);
 
-            if($expire <= $today) {
+            if($expire >= $today) {
                 $cekrencana =  $this->Rencana_model->detailRencana()->result();
 
                 if($this->input->post('rencana_vaksin') == $cekrencana[0]->rencana_vaksin){
@@ -111,7 +111,7 @@ class Rencana extends CI_Controller {
             $expire = strtotime($cekstok[0]->kadaluarsa);
             $today = strtotime($tgl);
 
-            if($expire <= $today) { 
+            if($expire >= $today) { 
                 $kurang = $this->Stok_model->kurangStok($this->input->post('jenis_vaksin'), $this->input->post('rencana_vaksin'));
 
                 $simpan = $this->Rencana_model->createRencana($data);

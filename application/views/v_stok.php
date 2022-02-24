@@ -58,7 +58,7 @@
                         $no=1; foreach($stok as $data){ 
                         $expire = strtotime($data->kadaluarsa);
                         $today = strtotime($tgl);
-                        if($expire <= $today) { $hari = "Aktif"; $badge = "badge-success"; }else{ echo $hari="Expired"; $badge="badge-danger"; }
+                        if($expire >= $today) { $hari = "Aktif"; $badge = "badge-success"; }else{ $hari="Expired"; $badge="badge-danger"; }
 
                         if($data->jumlah == "0"){ $badestok="badge-danger"; }else{ $badestok=""; }
                   ?>

@@ -35,6 +35,35 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
+<!-- Hightchart -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<style>
+  #contain {
+  height: 100px;  
+  overflow-y: scroll;  
+}
+#table_scroll {
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+#table_scroll tbody td {
+  padding: 10px;
+  /*background-color: #17a2b8;*/
+  color: #000000;
+}
+#table_fixed thead th {
+  padding: 20px;
+  background-color: #20c997;
+  color: #fff;
+  font-weight: 100;
+}
+</style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
